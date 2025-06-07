@@ -3,64 +3,67 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-  }
-  
-  body {
+}
+
+body {
     background: linear-gradient(to right, #f0faff, #ffffff);
     height: 100vh;
-  }
-  
- 
-  .dashboard-wrapper {
-    display: flex;
+}
+
+.dashboard-wrapper {
+    display: flex; /* This makes sidebar and main-content sit side-by-side */
     height: 100vh;
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    width: 220px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px; /* Keep fixed width */
     background: linear-gradient(to bottom, #007acc, #005b99);
     color: white;
-    padding: 20px 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  .sidebar .logo {
+    /* z-index is fine here if you have overlapping elements, but not the primary fix for this layout */
+    z-index: 1000;
+}
+
+.sidebar .logo {
     font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
-    margin-bottom: -250px; 
-  }
-  
-  
-  .sidebar-menu {
+    /* REMOVE THIS LINE: margin-bottom: -250px; */
+    margin-bottom: 30px; /* Add a positive margin to separate logo from menu */
+}
+
+.sidebar-menu {
     list-style: none;
-  }
-  
-  .sidebar-menu li {
+    flex-grow: 1; /* Allows the menu to take available space */
+    padding-top: 20px; /* Add some space above the menu if needed */
+}
+
+.sidebar-menu li {
     margin: 15px 0;
-  }
-  
-  .sidebar-menu a {
+}
+
+.sidebar-menu a {
     color: white;
     text-decoration: none;
     padding: 8px 12px;
     display: block;
     border-radius: 8px;
     transition: background 0.3s;
-  }
-  
-  .sidebar-menu a:hover,
-  .sidebar-menu a.active {
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
     background: rgba(255, 255, 255, 0.2);
-  }
-  /*  End of sidebar*/
+}
+/* End of sidebar*/
 
 
-  /* Logout Button */
-  .logout-btn-sidebar {
+/* Logout Button */
+.logout-btn-sidebar {
     background-color: #e74c3c;
     color: white;
     border: none;
@@ -70,150 +73,157 @@
     cursor: pointer;
     margin-top: 20px;
     transition: background 0.3s ease;
-  }
-  
-  .logout-btn-sidebar:hover {
+}
+
+.logout-btn-sidebar:hover {
     background-color: #c0392b;
-  }
-  .modal {
+}
+
+/* Modal styles are fine and not related to the layout issue */
+.modal {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-  }
-  
-  /* Modal Box */
-  .modal-content {
+}
+
+/* Modal Box */
+.modal-content {
     background-color: #fff;
     padding: 20px 30px;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-buttons button {
+}
+
+.modal-buttons button {
     margin: 10px;
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  #confirmLogout {
+}
+
+#confirmLogout {
     background-color: #e74c3c;
     color: white;
-  }
-  
-  #cancelLogout {
+}
+
+#cancelLogout {
     background-color: #ccc;
-  }
-  /*End of Logout btn*/
-  
-  /* Main content */
-  .main-content {
-    flex: 1;
+}
+/*End of Logout btn*/
+
+/* Main content */
+.main-content {
+    flex: 1; /* This makes main-content take up all available space next to sidebar */
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Topbar */
-  .topbar {
+}
+
+/* Topbar */
+.topbar {
     background: linear-gradient(to right, #007acc, #005b99);
     color: white;
     padding: 33px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .topbar h1 {
+    /* No need for margin-left here if .dashboard-wrapper is flex and .main-content is flex: 1 */
+}
+
+.topbar h1 {
     font-size: 1.6rem;
-  }
-  
-  .icon-btn {
+    /* If "Payroll System" is in this h1, it should now be visible */
+}
+
+.icon-btn {
     background: none;
     border: none;
     color: white;
     font-size: 1.3rem;
     margin-left: 15px;
     cursor: pointer;
-  }
-  /*End of Topbar*/
-  
-  /* Dashboard content */
-  .dashboard-main {
+}
+/*End of Topbar*/
+
+/* Dashboard content */
+.dashboard-main {
     padding: 25px;
     overflow-y: auto;
     flex-grow: 1;
-  }
-  
-  .content-section {
+}
+
+.content-section {
     display: none;
-  }
-  
-  .content-section.active {
+}
+
+.content-section.active {
     display: block;
-  }
-  
-  .content-section h2 {
+}
+
+.content-section h2 {
     font-size: 1.8rem;
     margin-bottom: 15px;
     color: #333;
-  }
-  .modal {
+}
+/* Modal styles repeated, remove one set if they are identical */
+.modal {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 0; 
+    left: 0;
     top: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: #fff;
     padding: 20px 30px;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-buttons {
+}
+
+.modal-buttons {
     margin-top: 15px;
-  }
-  
-  .modal-buttons button {
+}
+
+.modal-buttons button {
     margin: 0 10px;
     padding: 8px 16px;
     border: none;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  #confirmLogout {
+}
+
+#confirmLogout {
     background-color: #e74c3c;
     color: white;
-  }
-  
-  #cancelLogout {
+}
+
+#cancelLogout {
     background-color: #586061;
     color: white;
-  }
- 
-  .notification-container {
+}
+
+.notification-container {
     position: relative;
-  }
-  
-  .notification-dropdown {
+}
+
+.notification-dropdown {
     display: none;
     position: absolute;
     right: 0;
@@ -227,20 +237,19 @@
     padding: 10px;
     font-size: 0.9rem;
     color: #555;
-  }
-  
-  .notification-item {
+}
+
+.notification-item {
     padding: 5px 0;
     border-bottom: 1px solid #eee;
-  }
-  
-  #notifBtn {
-    position: relative;
-    top: 1px;   
-    left: -40px; 
-  }
+}
 
-  .notification-item:last-child {
+#notifBtn {
+    position: relative;
+    top: 1px;
+    left: -40px;
+}
+
+.notification-item:last-child {
     border-bottom: none;
-  }
-  
+}
