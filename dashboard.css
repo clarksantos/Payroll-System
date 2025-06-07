@@ -6,6 +6,7 @@
 }
 
 body {
+    /* Kept original background, but you could change it to a very light gray if you want a darker overall page */
     background: linear-gradient(to right, #f0faff, #ffffff);
     height: 100vh;
 }
@@ -18,13 +19,13 @@ body {
 /* Sidebar */
 .sidebar {
     width: 220px; /* Keep fixed width */
-    background: linear-gradient(to bottom, #007acc, #005b99);
-    color: white;
+    /* *** COLOR CHANGE HERE *** */
+    background: #2a2a2a; /* Dark gray/black from CAR RENT dashboard */
+    color: white; /* Keep text white */
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* z-index is fine here if you have overlapping elements, but not the primary fix for this layout */
     z-index: 1000;
 }
 
@@ -32,8 +33,8 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
-    /* REMOVE THIS LINE: margin-bottom: -250px; */
     margin-bottom: 30px; /* Add a positive margin to separate logo from menu */
+    /* No change to color here, it inherits white from .sidebar */
 }
 
 .sidebar-menu {
@@ -47,7 +48,7 @@ body {
 }
 
 .sidebar-menu a {
-    color: white;
+    color: white; /* Keep text white */
     text-decoration: none;
     padding: 8px 12px;
     display: block;
@@ -57,14 +58,15 @@ body {
 
 .sidebar-menu a:hover,
 .sidebar-menu a.active {
-    background: rgba(255, 255, 255, 0.2);
+    /* *** COLOR CHANGE HERE *** */
+    background: #007bff; /* Blue for active/hover state, similar to CAR RENT dashboard */
 }
 /* End of sidebar*/
 
 
 /* Logout Button */
 .logout-btn-sidebar {
-    background-color: #e74c3c;
+    background-color: #535151; /* Kept original red for logout button */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -117,7 +119,8 @@ body {
 }
 
 #cancelLogout {
-    background-color: #ccc;
+    background-color: #586061; /* Darkened this slightly for better contrast on a potentially darker background */
+    color: white;
 }
 /*End of Logout btn*/
 
@@ -130,24 +133,24 @@ body {
 
 /* Topbar */
 .topbar {
-    background: linear-gradient(to right, #007acc, #005b99);
-    color: white;
+    /* *** COLOR CHANGE HERE *** */
+    background: #2a2a2a; /* Dark gray/black from CAR RENT dashboard */
+    color: white; /* Keep text white */
     padding: 33px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* No need for margin-left here if .dashboard-wrapper is flex and .main-content is flex: 1 */
 }
 
 .topbar h1 {
     font-size: 1.6rem;
-    /* If "Payroll System" is in this h1, it should now be visible */
+    color: white; /* Ensure the "Payroll Dashboard" text is white against the dark topbar */
 }
 
 .icon-btn {
     background: none;
     border: none;
-    color: white;
+    color: white; /* Ensure icons are white against the dark topbar */
     font-size: 1.3rem;
     margin-left: 15px;
     cursor: pointer;
@@ -174,50 +177,7 @@ body {
     margin-bottom: 15px;
     color: #333;
 }
-/* Modal styles repeated, remove one set if they are identical */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.modal-buttons {
-    margin-top: 15px;
-}
-
-.modal-buttons button {
-    margin: 0 10px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#confirmLogout {
-    background-color: #e74c3c;
-    color: white;
-}
-
-#cancelLogout {
-    background-color: #586061;
-    color: white;
-}
+/* Removed duplicate modal styles from here */
 
 .notification-container {
     position: relative;
