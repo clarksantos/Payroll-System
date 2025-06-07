@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Payroll Dashboard</title>
+      
+        <meta http-equiv="Cache-Control" content="no-store" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+      
+        <link rel="stylesheet" href="dashboard.css" />
+      </head>
+      
+<body>
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h2 class="logo">Payroll System</h2>
+      <ul class="sidebar-menu">
+        <li><a href="#" data-section="employees" class="active">Employees</a></li>
+        <li><a href="#" data-section="attendance">Attendance</a></li>
+        <li><a href="#" data-section="payroll">Payroll</a></li>
+        <li><a href="#" data-section="advances">Advances</a></li>
+        <li><a href="#" data-section="leave">Leave</a></li>
+        <li><a href="#" data-section="overtime">Overtime</a></li>
+        <li><a href="#" data-section="users">Users</a></li>
+        <li><a href="#" data-section="reports">Reports</a></li>
+      </ul>
+
+      <button class="logout-btn-sidebar" id="logoutBtn">Logout</button>
+    </nav>
+    <!-- End of Sidebar -->
+
+    <!-- Main content -->
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1>Payroll Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <button id="notifBtn" class="icon-btn" title="Notifications">🔔</button>
+  <div class="notification-dropdown" id="notifDropdown">
+    <div class="notification-item">No notifications</div>
+        </div>
+      </header>
+
+      <section class="dashboard-main">
+        <div id="employees" class="content-section active"> 
+          <h2>Employees</h2>
+          <p>Employees info ...</p>
+        </div>
+        <div id="attendance" class="content-section">
+          <h2>Attendance</h2>
+          <p>Attendance info ...</p>
+        </div>
+        <div id="payroll" class="content-section">
+          <h2>Payroll</h2>
+          <p>Payroll info ...</p>
+        </div>
+        <div id="advances" class="content-section">
+          <h2>Advances</h2>
+          <p>Advances info ...</p>
+        </div>
+        <div id="leave" class="content-section">
+          <h2>Leave</h2>
+          <p>Leave info ..</p>
+        </div>
+        <div id="overtime" class="content-section">
+          <h2>Overtime</h2>
+          <p>Overtime info ...</p>
+        </div>
+        <div id="users" class="content-section">
+          <h2>Users</h2>
+          <p>Users info ...</p>
+        </div>
+        <div id="reports" class="content-section">
+          <h2>Reports</h2>
+          <p>Reports info ...</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <div class="modal-buttons">
+        <button id="confirmLogout">Yes</button>
+        <button id="cancelLogout">No</button>
+      </div>
+    </div>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
