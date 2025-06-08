@@ -9,3 +9,9 @@ Overtime: Manages and calculates employee overtime.
 Users: Manages user accounts and access permissions within the system.
 Reports: Generates various reports related to HR and payroll data.
 Logout: Securely exits the application.
+
+cloud platform: vercel
+
+password: admin123
+
+link iin website: https://vercel.com/clark-santos-projects/payroll-system
