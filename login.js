@@ -1,21 +1,36 @@
 function login() {
-    const password = document.getElementById("password").value;
-    const correctPassword = "admin123"; 
+  const password = document.getElementById("password").value;
+  const correctPassword = "admin123";
 
-    if (password === correctPassword) {
-      sessionStorage.setItem("loggedIn", "true");  
+  const errorMsg = document.getElementById("error-msg");
+
+  if (password === correctPassword) {
+    sessionStorage.setItem("loggedIn", "true");
+
+    // Show loading animation or delay before redirect
+    const loginBox = document.querySelector(".login-box");
+    loginBox.innerHTML = "<p style='color:white;'>Logging in...</p>";
+
+    setTimeout(() => {
       window.location.href = "dashboard.html";
-      return false;
-    } else {
-      alert("Incorrect password.");
-      return false;
-    }
-    
+    }, 1000); // 1 second delay
+
+    return false;
+  } else {
+    errorMsg.textContent = "Incorrect password.";
+    errorMsg.style.opacity = "1";
+
+    // Fade out after 2 seconds
+    setTimeout(() => {
+      errorMsg.style.opacity = "0";
+    }, 2000);
+
+    return false;
   }
-  document.addEventListener('DOMContentLoaded', () => {
-    if (sessionStorage.getItem("loggedIn") === "true") {
-      // User already logged in, redirect to dashboard
-      window.location.replace("dashboard.html");
-    }
-  });
-  
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (sessionStorage.getItem("loggedIn") === "true") {
+    window.location.replace("dashboard.html");
+  }
+});

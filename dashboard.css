@@ -1,25 +1,25 @@
+/* Universal Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    /* Kept original background, but you could change it to a very light gray if you want a darker overall page */
+    font-family: Arial, sans-serif; /* Keeping your preferred font */
+ }
+ body {
+    /* Using your original background gradient, but you might want to adjust */
     background: linear-gradient(to right, #f0faff, #ffffff);
     height: 100vh;
-}
-
-.dashboard-wrapper {
+    overflow: auto; /* Prevent body scroll, wrapper handles it */
+ }
+ .dashboard-wrapper {
     display: flex; /* This makes sidebar and main-content sit side-by-side */
     height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 220px; /* Keep fixed width */
-    /* *** COLOR CHANGE HERE *** */
+    /* Added subtle shadow to the whole dashboard for depth */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+ }
+ /* Sidebar */
+ .sidebar {
+    width: 220px; /* Keeping your fixed width */
     background: #2a2a2a; /* Dark gray/black from CAR RENT dashboard */
     color: white; /* Keep text white */
     padding: 20px;
@@ -27,45 +27,46 @@ body {
     flex-direction: column;
     justify-content: space-between;
     z-index: 1000;
-}
-
-.sidebar .logo {
+    /* Added shadow for sidebar to match the dashboard image */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+ }
+ .sidebar .logo {
     font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px; /* Add a positive margin to separate logo from menu */
     /* No change to color here, it inherits white from .sidebar */
-}
-
-.sidebar-menu {
+    padding-bottom: 15px; /* Added padding bottom for the line */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator line */
+ }
+ .sidebar-menu {
     list-style: none;
     flex-grow: 1; /* Allows the menu to take available space */
     padding-top: 20px; /* Add some space above the menu if needed */
-}
-
-.sidebar-menu li {
+ }
+ .sidebar-menu li {
     margin: 15px 0;
-}
-
-.sidebar-menu a {
+ }
+ .sidebar-menu a {
     color: white; /* Keep text white */
     text-decoration: none;
     padding: 8px 12px;
     display: block;
     border-radius: 8px;
     transition: background 0.3s;
-}
-
-.sidebar-menu a:hover,
-.sidebar-menu a.active {
-    /* *** COLOR CHANGE HERE *** */
+    /* Added flex for icon alignment if you choose to add them later */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+ }
+ .sidebar-menu a:hover,
+ .sidebar-menu a.active {
     background: #007bff; /* Blue for active/hover state, similar to CAR RENT dashboard */
-}
-/* End of sidebar*/
-
-
-/* Logout Button */
-.logout-btn-sidebar {
+ }
+ /* End of sidebar*/
+ 
+ /* Logout Button */
+ .logout-btn-sidebar {
     background-color: #535151; /* Kept original red for logout button */
     color: white;
     border: none;
@@ -75,15 +76,19 @@ body {
     cursor: pointer;
     margin-top: 20px;
     transition: background 0.3s ease;
-}
-
-.logout-btn-sidebar:hover {
+    width: 100%; /* Make button full width of sidebar padding */
+    /* Added flex for icon alignment if you choose to add them later */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+ }
+ .logout-btn-sidebar:hover {
     background-color: #c0392b;
-}
-
-/* Modal styles are fine and not related to the layout issue */
-.modal {
-    display: none;
+ }
+ /* Modal styles (General for all modals, like logout) */
+ .modal {
+    display: none; /* Hidden by default */
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -93,101 +98,122 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-}
-
-/* Modal Box */
-.modal-content {
+ }
+ .modal.active {
+    display: flex; /* Show when active class is added by JS */
+ }
+ /* Modal Box (General for all modals, like logout) */
+ .modal-content {
     background-color: #fff;
     padding: 20px 30px;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.modal-buttons button {
+    max-width: 400px; /* Default max-width for smaller modals like logout */
+    width: 90%;
+ }
+ .modal-buttons button {
     margin: 10px;
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-}
-
-#confirmLogout {
+    transition: background 0.3s ease; /* Added transition */
+ }
+ #confirmLogout {
     background-color: #e74c3c;
     color: white;
-}
-
-#cancelLogout {
+ }
+ #confirmLogout:hover {
+    background-color: #c0392b;
+ }
+ #cancelLogout {
     background-color: #586061; /* Darkened this slightly for better contrast on a potentially darker background */
     color: white;
-}
-/*End of Logout btn*/
-
-/* Main content */
-.main-content {
+ }
+ #cancelLogout:hover {
+    background-color: #4a4d4e; /* Darker gray on hover */
+ }
+ /*End of Logout btn*/
+ /* Main content */
+ .main-content {
     flex: 1; /* This makes main-content take up all available space next to sidebar */
     display: flex;
     flex-direction: column;
-}
-
-/* Topbar */
-.topbar {
-    /* *** COLOR CHANGE HERE *** */
+    /* Added background color for main content area to match image */
+    background-color: #fcfdfe;
+ }
+ /* Topbar */
+ .topbar {
     background: #2a2a2a; /* Dark gray/black from CAR RENT dashboard */
     color: white; /* Keep text white */
     padding: 33px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.topbar h1 {
+    /* Added shadow for topbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+ }
+ .topbar h1 {
     font-size: 1.6rem;
     color: white; /* Ensure the "Payroll Dashboard" text is white against the dark topbar */
-}
-
-.icon-btn {
+    margin: 0; /* Remove default margin */
+ }
+ .topbar-right { /* Changed from .topbar-icons based on your HTML, assuming it holds notifications and user profile */
+    display: flex;
+    align-items: center;
+ }
+ .icon-btn {
     background: none;
     border: none;
     color: white; /* Ensure icons are white against the dark topbar */
     font-size: 1.3rem;
     margin-left: 15px;
     cursor: pointer;
-}
-/*End of Topbar*/
-
-/* Dashboard content */
-.dashboard-main {
+    transition: color 0.3s ease; /* Added transition */
+ }
+ .icon-btn:hover {
+    color: #007bff; /* Blue on hover */
+ }
+ /*End of Topbar*/
+ /* Dashboard content */
+ .dashboard-main {
     padding: 25px;
-    overflow-y: auto;
+    overflow-y: auto; /* Allows scrolling within the main content area */
     flex-grow: 1;
-}
-
-.content-section {
+    /* White background for the main content box as seen in the image */
+    background-color: #ffffff;
+    /* Margin around the content area, creating the white box effect */
+    margin: 25px;
+    border-radius: 8px; /* Rounded corners for the content box */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Lighter shadow for content box */
+ }
+ .content-section {
     display: none;
-}
-
-.content-section.active {
+    /* Added fade-in animation for section transitions */
+    animation: fadeIn 0.3s ease-out;
+ }
+ .content-section.active {
     display: block;
-}
-
-.content-section h2 {
+ }
+ .content-section h2 {
     font-size: 1.8rem;
     margin-bottom: 15px;
     color: #333;
-}
-/* Removed duplicate modal styles from here */
-
-.notification-container {
+    /* Added subtle underline for section titles */
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+ }
+ .notification-container {
     position: relative;
-}
-
-.notification-dropdown {
+ }
+ .notification-dropdown {
     display: none;
     position: absolute;
     right: 0;
-    top: 70px;
+    top: 70px; /* Adjusted position to be directly below the bell icon */
     background: white;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -197,19 +223,1035 @@ body {
     padding: 10px;
     font-size: 0.9rem;
     color: #555;
-}
-
-.notification-item {
+    /* Added fade-in animation */
+    animation: fadeIn 0.2s ease-out;
+ }
+ .notification-dropdown.active {
+    display: block; /* Show when active */
+ }
+ .notification-item {
     padding: 5px 0;
     border-bottom: 1px solid #eee;
-}
-
-#notifBtn {
-    position: relative;
-    top: 1px;
-    left: -40px;
-}
-
-.notification-item:last-child {
+    cursor: pointer; /* Indicate clickable items */
+    transition: background 0.2s ease; /* Smooth hover */
+ }
+ .notification-item:hover {
+    background-color: #f8f8f8;
+ }
+ #notifBtn {
+    /* No specific positioning needed here, it should be handled by .topbar-right flex */
+ }
+ .notification-item:last-child {
     border-bottom: none;
-}
+ }
+ /* Animations */
+ @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+ /* --- Employee Management Specific Styles (from image_bf1a4a.png) --- */
+ .employee-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px; /* Space between elements when wrapping */
+ }
+ .employee-management-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px; /* Reduced margin */
+    color: #333;
+    border-bottom: none; /* No underline for this sub-heading */
+    padding-bottom: 0;
+ }
+ .employee-management-header p {
+    font-size: 0.95rem;
+    color: #666;
+    flex-basis: 100%; /* Make paragraph take full width above button */
+    order: 2; /* Order it after the H2 */
+    margin-top: -10px; /* Pull it slightly closer to H2 */
+ }
+ .add-employee-btn {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+    order: 1; /* Order it before the paragraph */
+ }
+ .add-employee-btn:hover {
+    background-color: #0056b3;
+ }
+ .employee-filters {
+    background-color: #f8f9fa; /* Light background for filter section */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of filter groups */
+    gap: 20px; /* Space between filter groups */
+    align-items: flex-end; /* Align inputs/buttons at the bottom */
+    margin-bottom: 30px;
+ }
+ .filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px; /* Minimum width for each filter group */
+    flex: 1; /* Allow groups to grow */
+ }
+ .filter-group label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+ }
+ .input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+ }
+ .input-with-icon i {
+    position: absolute;
+    left: 12px;
+    color: #aaa;
+    font-size: 0.9rem;
+ }
+ .employee-filters input[type="text"],
+ .employee-filters select {
+    width: 100%;
+    padding: 10px 10px 10px 35px; /* Left padding for icon */
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none; /* Remove default select styling for custom arrow */
+    -moz-appearance: none;
+    appearance: none;
+ }
+ .employee-filters select {
+    padding-left: 10px; /* No icon for select, so no extra left padding */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%236c757d' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592c.859 0 1.319 1.013.753 1.658L8.753 11.14a1.05 1.05 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 0.8em;
+    padding-right: 30px; /* Space for the custom arrow */
+ }
+ 
+ .employee-filters input[type="text"]:focus,
+ .employee-filters select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+ }
+ .search-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    height: 42px; /* Match height of input/select fields */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+ }
+ .search-btn:hover {
+    background-color: #0056b3;
+ }
+ .employee-list-container {
+    margin-top: 20px;
+ }
+ .employee-list-container h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: inline-block; /* For aligning with the count */
+ }
+ .employee-list-container span {
+    font-size: 0.9rem;
+    color: #777;
+    margin-left: 15px;
+ }
+ .employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to content */
+ }
+ .employee-table thead {
+    background-color: #e9ecef; /* Light gray header */
+ }
+ .employee-table th,
+ .employee-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 0.9rem;
+    color: #333;
+ }
+ .employee-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+    background-color: #f2f2f2; /* Slightly darker header background */
+ }
+ .employee-table tbody tr:last-child td {
+    border-bottom: none;
+ }
+ .employee-table tbody tr:hover {
+    background-color: #f5f5f5;
+ }
+ /* Optional: Add a scrollbar for the table if content overflows */
+ .employee-list-container {
+    overflow-x: auto;
+ }
+/* Modal Overlay */
+.modal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0,0,0,0.5);
+   display: none;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ /* Modal Box */
+ .modal-box {
+   background: #fff;
+   padding: 30px;
+   border-radius: 8px;
+   width: 400px;
+   max-width: 90%;
+   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+ }
+ 
+ .modal-box h3 {
+   margin-top: 0;
+   margin-bottom: 20px;
+   font-size: 20px;
+ }
+ 
+ .modal-box label {
+   display: block;
+   margin-bottom: 6px;
+   font-size: 14px;
+   color: #333;
+ }
+ 
+ .modal-box input {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 15px;
+   border-radius: 4px;
+   border: 1px solid #ccc;
+   font-size: 14px;
+ }
+ 
+ .modal-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: 10px;
+ }
+ 
+ .save-btn {
+   background-color: #007bff;
+   color: #fff;
+   padding: 8px 14px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+ 
+ .cancel-btn {
+   background-color: #6c757d;
+   color: white;
+   padding: 8px 14px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+ 
+
+
+
+ 
+ /* --- Status Badges for table (if you dynamically add data) --- */
+ .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-transform: capitalize;
+ }
+ .status-badge.active { background-color: #28a745; } /* Green */
+ .status-badge.inactive { background-color: #dc3545; } /* Red */
+ .status-badge.on-leave { background-color: #ffc107; color: #333; } /* Yellow/Orange */
+ /* --- Table Action Buttons (if you dynamically add data) --- */
+ .action-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #007bff; /* Blue for actions */
+    transition: color 0.2s ease;
+ }
+ .action-btn:hover {
+    color: #0056b3;
+ }
+ .action-btn.delete-btn {
+    color: #dc3545; /* Red for delete */
+ }
+ .action-btn.delete-btn:hover {
+    color: #c82333;
+ }
+ /* --- ADD NEW EMPLOYEE MODAL SPECIFIC STYLES --- */
+ /* Override default modal-content for larger size */
+ .modal-content.modal-lg {
+    max-width: 700px; /* Adjust max-width for a larger modal */
+    width: 90%;
+    padding: 0; /* Remove padding from modal-content, handle it inside */
+    text-align: left; /* Align text within the modal content */
+    display: flex;
+    flex-direction: column;
+    min-height: 500px; /* Give some minimum height for the form */
+ }
+ .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f8f8;
+    border-top-left-radius: 8px; /* Match modal-content border-radius */
+    border-top-right-radius: 8px; /* Match modal-content border-radius */
+ }
+ .modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+ }
+ .close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+ }
+ .close-modal-btn:hover {
+    color: #333;
+ }
+ .add-employee-form {
+    padding: 25px 30px;
+    flex-grow: 1; /* Allow form to take up remaining space */
+    overflow-y: auto; /* Enable scrolling for form if content overflows */
+ }
+ .add-employee-form .form-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between form groups */
+    margin-bottom: 20px;
+ }
+ .add-employee-form .form-group {
+    flex: 1; /* Each form group takes equal space */
+    min-width: 250px; /* Minimum width for form groups */
+    display: flex;
+    flex-direction: column;
+ }
+ .add-employee-form .form-group.full-width {
+    flex: 1 1 100%; /* Make this group take full width */
+ }
+ .add-employee-form label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+ }
+ .add-employee-form input[type="text"],
+ .add-employee-form input[type="email"],
+ .add-employee-form input[type="number"],
+ .add-employee-form select,
+ .add-employee-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+ }
+ /* Specific styling for select dropdown arrow in modal forms */
+ .add-employee-form select {
+    -webkit-appearance: none; /* Remove default select styling for custom arrow */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%236c757d' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592c.859 0 1.319 1.013.753 1.658L8.753 11.14a1.05 1.05 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 0.8em;
+    padding-right: 30px; /* Space for the custom arrow */
+ }
+ .add-employee-form textarea {
+    min-height: 80px; /* Allow resizing but with a minimum height */
+    resize: vertical; /* Only allow vertical resizing */
+ }
+ .add-employee-form input:focus,
+ .add-employee-form select:focus,
+ .add-employee-form textarea:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+ }
+ .add-employee-form .input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+ }
+ .add-employee-form .input-with-icon input {
+    padding-right: 40px; /* Space for the icon */
+ }
+ .add-employee-form .input-with-icon i {
+    position: absolute;
+    right: 12px;
+    color: #aaa;
+    font-size: 1rem;
+ }
+ .modal-footer {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    padding: 20px 30px;
+    border-top: 1px solid #eee;
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 8px; /* Match modal-content border-radius */
+    border-bottom-right-radius: 8px; /* Match modal-content border-radius */
+    gap: 10px; /* Space between buttons */
+ }
+ .modal-footer .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+ }
+ .modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+ }
+ .modal-footer .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+ }
+ .modal-footer .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+ }
+ .modal-footer .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+ }
+
+ #nishimuraText {
+    display: inline-block; 
+    position: relative;    
+    top: 11px;             
+    left: 1px;           
+  }
+
+
+/*Overtime design*/
+
+.overtime-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+ }
+ 
+ .add-overtime-btn {
+   background-color: #040505;
+   color: #fff;
+   padding: 10px 16px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 14px;
+ }
+ 
+ .add-overtime-btn i {
+   margin-right: 6px;
+ }
+ 
+ .overtime-filters {
+   display: flex;
+   gap: 20px;
+   flex-wrap: wrap;
+   margin-bottom: 20px;
+ }
+ 
+ .overtime-filters .filter-group {
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .overtime-table-container {
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 6px;
+ }
+ 
+ .overtime-table {
+   width: 100%;
+   border-collapse: collapse;
+ }
+ 
+ .overtime-table th,
+ .overtime-table td {
+   padding: 10px 12px;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+ }
+ 
+ .overtime-table th {
+   background-color: #f5f5f5;
+ }
+ 
+ .overtime-table tbody tr:hover {
+   background-color: #f9f9f9;
+ }
+ #overtimeReason {
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+   font-size: 14px;
+   box-sizing: border-box;
+   transition: border-color 0.3s;
+ }
+ 
+ #overtimeReason:focus {
+   border-color: #007bff;
+   outline: none;
+ }
+ 
+
+ .input-with-icon {
+   position: relative;
+   display: flex;
+   align-items: center;
+ }
+ 
+ .input-with-icon i {
+   position: absolute;
+   left: 10px;
+   color: #888;
+ }
+ 
+ .input-with-icon input {
+   padding-left: 30px;
+   width: 100%;
+   box-sizing: border-box;
+ }
+ 
+ .input-with-icon input[type="date"] {
+   padding-left: 35px;
+   height: 38px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-family: inherit;
+   font-size: 14px;
+   background-color: #fff;
+   color: #333;
+   outline: none;
+ }
+ 
+ .input-with-icon input[type="date"]::-webkit-calendar-picker-indicator {
+   cursor: pointer;
+   filter: invert(50%);
+ }
+ .request-overtime-btn {
+   background-color: #007bff; /* Bootstrap blue */
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   font-size: 15px;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+ }
+ 
+ .request-overtime-btn:hover {
+   background-color: #0056b3;
+ }
+ 
+ .request-overtime-btn i {
+   font-size: 16px;
+ }
+ 
+ 
+/*End of Overtime design*/
+
+
+
+/* Payroll Design*/
+
+/* Inherits most styles from employee design */
+
+#payroll .employee-management-header h2 {
+   color: #333;
+ }
+ 
+ #payroll .input-with-icon {
+   position: relative;
+   display: flex;
+   align-items: center;
+ }
+ 
+ #payroll .input-with-icon i {
+   position: absolute;
+   left: 10px;
+   color: #888;
+ }
+ 
+ #payroll .input-with-icon input {
+   padding-left: 30px;
+   width: 100%;
+   box-sizing: border-box;
+ }
+ #payroll .input-with-icon input[type="month"] {
+   padding-left: 30px;
+   width: 100%;
+   box-sizing: border-box;
+   height: 36px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-family: inherit;
+   font-size: 14px;
+ }
+ 
+ #payroll .employee-filters {
+   display: flex;
+   gap: 20px;
+   flex-wrap: wrap;
+   margin-bottom: 20px;
+ }
+ 
+ #payroll .filter-group {
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ #payroll .employee-table th,
+ #payroll .employee-table td {
+   padding: 10px 12px;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+ }
+ 
+ #payroll .employee-table th {
+   background-color: #f5f5f5;
+ }
+ 
+ #payroll .employee-table tbody tr:hover {
+   background-color: #f9f9f9;
+ }
+
+ .modal-overlay {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal-box {
+   background: white;
+   padding: 2rem;
+   border-radius: 10px;
+   width: 90%;
+   max-width: 400px;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+ }
+ 
+ .modal-box h3 {
+   margin-bottom: 1rem;
+   color: #333;
+ }
+ 
+ .modal-box label {
+   display: block;
+   margin: 0.5rem 0 0.2rem;
+   font-weight: 500;
+   font-size: 0.95rem;
+ }
+ 
+ .modal-box input {
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 0.75rem;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+ 
+ .modal-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: 10px;
+ }
+ 
+ .save-btn {
+   background-color: #007bff;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ 
+ .cancel-btn {
+   background-color: #ccc;
+   color: black;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ 
+ 
+/* End of Payroll Design*/
+
+/* Leave Design*/
+
+/* Header */
+.leave-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+ }
+ 
+ .leave-header p {
+   color: #666;
+   font-size: 14px;
+   margin-left: 10px;
+ }
+ 
+ /* Button */
+ .request-leave-btn {
+   background-color: #007bff;
+   color: #fff;
+   padding: 10px 16px;
+   border: none;
+   border-radius: 4px;
+   font-size: 14px;
+   cursor: pointer;
+ }
+ 
+ .request-leave-btn i {
+   margin-right: 6px;
+ }
+ 
+ /* Summary Cards */
+ .leave-summary-cards {
+   display: flex;
+   gap: 20px;
+   flex-wrap: wrap;
+   margin-bottom: 20px;
+ }
+ 
+ .card.summary {
+   flex: 1 1 200px;
+   display: flex;
+   align-items: center;
+   padding: 16px;
+   border-radius: 6px;
+   background: #fff;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+ }
+ 
+ .card.summary .icon {
+   font-size: 24px;
+   margin-right: 12px;
+   color: #007bff;
+ }
+ 
+ /* Colored border indicators */
+ .card.total { border-left: 4px solid #007bff; }
+ .card.pending { border-left: 4px solid #fd7e14; }
+ .card.approved { border-left: 4px solid #28a745; }
+ .card.rejected { border-left: 4px solid #dc3545; }
+ 
+ /* Filters */
+ .leave-filters {
+   display: flex;
+   gap: 20px;
+   flex-wrap: wrap;
+   margin-bottom: 20px;
+ }
+ 
+ .leave-filters .filter-group {
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .leave-filters label {
+   font-size: 13px;
+   color: #333;
+   margin-bottom: 5px;
+ }
+ 
+ .leave-filters input,
+ .leave-filters select {
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   min-width: 180px;
+   font-size: 14px;
+ }
+ 
+ /* Search Button */
+ .search-btn {
+   background-color: #6c757d;
+   color: #fff;
+   padding: 10px 16px;
+   border: none;
+   border-radius: 4px;
+   font-size: 14px;
+   cursor: pointer;
+ }
+ 
+ /* Table */
+ .leave-table-container {
+   overflow-x: auto;
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 6px;
+ }
+ 
+ .leave-table {
+   width: 100%;
+   border-collapse: collapse;
+ }
+ 
+ .leave-table th,
+ .leave-table td {
+   padding: 12px 15px;
+   border-bottom: 1px solid #eee;
+   text-align: left;
+   font-size: 14px;
+ }
+ 
+ .leave-table th {
+   background-color: #f5f5f5;
+   color: #333;
+ }
+ 
+ .leave-table tbody tr:hover {
+   background-color: #f9f9f9;
+ }
+ 
+ .leave-table .center {
+   text-align: center;
+   color: #888;
+ }
+
+ .modal-overlay {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal-box {
+   background: white;
+   padding: 2rem;
+   border-radius: 10px;
+   width: 90%;
+   max-width: 400px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .modal-box h3 {
+   margin-bottom: 1rem;
+   color: #333;
+ }
+ 
+ .modal-box label {
+   display: block;
+   margin: 0.5rem 0 0.2rem;
+   font-weight: 500;
+   font-size: 0.95rem;
+ }
+ 
+ .modal-box input,
+ .modal-box select {
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 0.75rem;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+ 
+ .modal-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: 10px;
+ }
+ 
+ .save-btn {
+   background-color: #007bff;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ 
+ .cancel-btn {
+   background-color: #ccc;
+   color: black;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ 
+ .modal-overlay {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal-box {
+   background: white;
+   padding: 2rem;
+   border-radius: 10px;
+   width: 90%;
+   max-width: 400px;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+ }
+ 
+ 
+/* End of Leave Design*/
+
+/* Advances Design*/
+.modal-overlay {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal-box {
+   background: white;
+   padding: 2rem;
+   border-radius: 10px;
+   width: 90%;
+   max-width: 400px;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+ }
+ 
+ .modal-box h3 {
+   margin-bottom: 1rem;
+   color: #333;
+ }
+ 
+ .modal-box label {
+   display: block;
+   margin: 0.5rem 0 0.2rem;
+   font-weight: 500;
+   font-size: 0.95rem;
+ }
+ 
+ .modal-box input {
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 0.75rem;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+ 
+ .modal-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: 10px;
+ }
+ 
+ .save-btn {
+   background-color: #007bff;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ 
+ .cancel-btn {
+   background-color: #ccc;
+   color: black;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+ 
+
+/* End of Advances Design*/
+
+
+

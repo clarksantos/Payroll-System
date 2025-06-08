@@ -1,96 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Payroll Dashboard</title>
-      
-        <meta http-equiv="Cache-Control" content="no-store" />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-      
-        <link rel="stylesheet" href="dashboard.css" />
-      </head>
-      
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Payroll Dashboard</title>
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link rel="stylesheet" href="dashboard.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 <body>
-  <div class="dashboard-wrapper">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <h2 class="logo">Payroll System</h2>
-      <ul class="sidebar-menu">
-        <li><a href="#" data-section="employees" class="active">Employees</a></li>
-        <li><a href="#" data-section="attendance">Attendance</a></li>
-        <li><a href="#" data-section="payroll">Payroll</a></li>
-        <li><a href="#" data-section="advances">Advances</a></li>
-        <li><a href="#" data-section="leave">Leave</a></li>
-        <li><a href="#" data-section="overtime">Overtime</a></li>
-        <li><a href="#" data-section="users">Users</a></li>
-        <li><a href="#" data-section="reports">Reports</a></li>
-      </ul>
+<div class="dashboard-wrapper">
+<nav class="sidebar">
+  <h2 id="nishimuraText" class="logo">Nishimura</h2>
+<ul class="sidebar-menu">
+<li><a href="#" data-section="employees" class="active"><i class="fas fa-users"></i> Employees</a></li>
+<li><a href="#" data-section="attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+<li><a href="#" data-section="payroll"><i class="fas fa-money-bill-wave"></i> Payroll</a></li>
+<li><a href="#" data-section="advances"><i class="fas fa-hand-holding-usd"></i> Advances</a></li>
+<li><a href="#" data-section="leave"><i class="fas fa-plane-departure"></i> Leave</a></li>
+<li><a href="#" data-section="overtime"><i class="fas fa-clock"></i> Overtime</a></li>
+<li><a href="#" data-section="users"><i class="fas fa-user-cog"></i> Users</a></li>
+<li><a href="#" data-section="reports"><i class="fas fa-chart-line"></i> Reports</a></li>
+</ul>
+<button class="logout-btn-sidebar" id="logoutBtn">
+<i class="fas fa-sign-out-alt"></i> Logout
+</button>
+</nav>
+<div class="main-content">
+<header class="topbar">
+<div class="topbar-left">
+<h1 id="pageTitle">Dashboard</h1> </div>
+<div class="topbar-right">
+<div class="notification-container">
+<button id="notifBtn" class="icon-btn" title="Notifications"><i class="fas fa-bell"></i></button>
+<div class="notification-dropdown" id="notifDropdown">
+<div class="notification-item">No new notifications.</div>
+</div>
+</div>
+</div>
+</header>
 
-      <button class="logout-btn-sidebar" id="logoutBtn">Logout</button>
-    </nav>
-    <!-- End of Sidebar -->
+<!-- Employee UI -->
+<section class="dashboard-main">
+<div id="employees" class="content-section active">
+<div class="employee-management-header">
+<div>
+<h2>Employee Management</h2>
+</div>
+<button class="add-employee-btn" id="addEmployeeButton"><i class="fas fa-plus"></i> Add Employee</button>
+</div>
+<div class="employee-filters">
+<div class="filter-group">
+<label for="search-employee">Search Employee</label>
+<div class="input-with-icon">
+<i class="fas fa-search"></i>
+<input type="text" id="search-employee" placeholder="Name, ID, or Email">
+</div>
+</div>
+<div class="filter-group">
+<label for="department-filter">Department</label>
+<select id="department-filter">
+<option value="all">All Departments</option>
+<option value="it">Clark</option>
+<option value="is">Lj</option>
+<option value="cs">Miqueas</option>
+</select>
+</div>
+<div class="filter-group">
+<label for="status-filter">Status</label>
+<select id="status-filter">
+<option value="all">All Status</option>
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+<option value="on-leave">On Leave</option>
+</select>
+</div>
 
-    <!-- Main content -->
-    <div class="main-content">
-      <header class="topbar">
-        <div class="topbar-left">
-          <h1>Payroll Dashboard</h1>
-        </div>
-        <div class="topbar-right">
-          <button id="notifBtn" class="icon-btn" title="Notifications">🔔</button>
-  <div class="notification-dropdown" id="notifDropdown">
-    <div class="notification-item">No notifications</div>
-        </div>
-      </header>
+<button class="search-btn"><i class="fas fa-search"></i> Search</button>
+</div>
+<div class="employee-list-container">
+<h3>Employee List</h3>
+<span>Showing 0 of 0 employees</span>
+<table class="employee-table">
+<thead>
+<tr>
+<th>EMPLOYEE</th>
+<th>EMPLOYEE ID</th>
+<th>DEPARTMENT</th>
+<th>POSITION</th>
+<th>SALARY</th>
+<th>HIRE DATE</th>
+<th>STATUS</th>
+<th>ACTIONS</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
 
-      <section class="dashboard-main">
-        <div id="employees" class="content-section active"> 
-          <h2>Employees</h2>
-          <p>Employees info ...</p>
-        </div>
-        <div id="attendance" class="content-section">
-          <h2>Attendance</h2>
-          <p>Attendance info ...</p>
-        </div>
-        <div id="payroll" class="content-section">
-          <h2>Payroll</h2>
-          <p>Payroll info ...</p>
-        </div>
-        <div id="advances" class="content-section">
-          <h2>Advances</h2>
-          <p>Advances info ...</p>
-        </div>
-        <div id="leave" class="content-section">
-          <h2>Leave</h2>
-          <p>Leave info ..</p>
-        </div>
-        <div id="overtime" class="content-section">
-          <h2>Overtime</h2>
-          <p>Overtime info ...</p>
-        </div>
-        <div id="users" class="content-section">
-          <h2>Users</h2>
-          <p>Users info ...</p>
-        </div>
-        <div id="reports" class="content-section">
-          <h2>Reports</h2>
-          <p>Reports info ...</p>
-        </div>
-      </section>
+<!-- Add Employee Modal -->
+<div id="addEmployeeModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3>Add New Employee</h3>
+    <form id="addEmployeeForm">
+      <label for="empName">Full Name</label>
+      <input type="text" id="empName" required>
+
+      <label for="empID">Employee ID</label>
+      <input type="text" id="empID" required>
+
+      <label for="empRole">Role/Position</label>
+      <input type="text" id="empRole" required>
+
+      <label for="empEmail">Email</label>
+      <input type="email" id="empEmail">
+
+      <label for="empPhone">Phone</label>
+      <input type="text" id="empPhone">
+
+      <div class="modal-actions">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="cancel-btn" id="cancelAddEmployee">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- End of Employee UI -->
+
+<!-- Attendance UI -->
+
+<div id="attendance" class="content-section">
+  <div class="employee-management-header">
+    <div>
+      <h2>Attendance Tracking</h2>
     </div>
+    <button class="add-employee-btn" id="markAttendanceButton"><i class="fas fa-calendar-check"></i> Mark Attendance</button>
   </div>
 
-  <div id="logoutModal" class="modal">
-    <div class="modal-content">
-      <p>Are you sure you want to logout?</p>
-      <div class="modal-buttons">
-        <button id="confirmLogout">Yes</button>
-        <button id="cancelLogout">No</button>
+  <div class="employee-filters">
+    <div class="filter-group">
+      <label for="attendance-search">Search Employee</label>
+      <div class="input-with-icon">
+        <i class="fas fa-search"></i>
+        <input type="text" id="attendance-search" placeholder="Name or ID">
       </div>
     </div>
+
+    <div class="filter-group">
+      <label for="attendance-date-filter">Date</label>
+      <div class="input-with-icon">
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" id="attendance-date-filter">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="attendance-status-filter">Status</label>
+      <select id="attendance-status-filter">
+        <option value="all">All</option>
+        <option value="present">Present</option>
+        <option value="absent">Absent</option>
+        <option value="late">Late</option>
+      </select>
+    </div>
+
+    <button class="search-btn"><i class="fas fa-search"></i> Search</button>
   </div>
-  <script src="dashboard.js"></script>
+
+  <div class="employee-list-container">
+    <h3>Attendance Records</h3>
+    <span>Showing 0 of 0 records</span>
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>EMPLOYEE ID</th>
+          <th>DATE</th>
+          <th>TIME IN</th>
+          <th>TIME OUT</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Attendance rows go here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Attendance Modal -->
+<div id="AttendanceModal" class="modal-overlay" style="display: none;">
+  <div class="modal-box">
+    <h3>Mark Attendance</h3>
+    
+    <label for="attendanceName">Employee Name</label>
+    <input type="text" id="attendanceName" placeholder="Enter name">
+
+    <label for="attendanceDate">Date</label>
+    <input type="date" id="attendanceDate" value="<?php echo date('Y-m-d'); ?>">
+
+    <label for="attendanceTimeIn">Time In</label>
+    <input type="time" id="attendanceTimeIn">
+
+    <label for="attendanceTimeOut">Time Out</label>
+    <input type="time" id="attendanceTimeOut">
+
+
+    <div class="modal-actions">
+      <button class="cancel-btn" id="closeAttendanceModal">Cancel</button>
+      <button class="save-btn" id="submitAttendance">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- End of Attendance UI -->
+
+<!-- Payroll UI -->
+
+<div id="payroll" class="content-section">
+  <div class="employee-management-header">
+    <div>
+      <h2>Payroll Management</h2>
+    </div>
+    <button class="add-employee-btn" id="addPayrollButton">
+      <i class="fas fa-plus"></i> Add Payroll
+    </button>
+  </div>
+
+  <div class="employee-filters">
+    <div class="filter-group">
+      <label for="search-payroll">Search Employee</label>
+      <div class="input-with-icon">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-payroll" placeholder="Name or ID">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="payroll-month">Month</label>
+      <div class="input-with-icon">
+        <i class="far fa-calendar-alt"></i>
+        <input type="month" id="payroll-month">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="payment-status-filter">Payment Status</label>
+      <select id="payment-status-filter">
+        <option value="all">All</option>
+        <option value="paid">Paid</option>
+        <option value="unpaid">Unpaid</option>
+      </select>
+    </div>
+
+    <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+  </div>
+
+  <div class="employee-list-container">
+    <h3>Payroll Records</h3>
+    <span>Showing 0 of 0 records</span>
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>EMPLOYEE ID</th>
+          <th>MONTH</th>
+          <th>BASIC SALARY</th>
+          <th>DEDUCTIONS</th>
+          <th>NET PAY</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Payroll rows will go here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Add Payroll Modal -->
+<div id="payrollModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3>Add Payroll</h3>
+    <form id="payrollForm">
+      <label for="employeeName">Employee Name</label>
+      <input type="text" id="employeeName" name="employeeName" required>
+
+      <label for="employeeId">Employee ID</label>
+      <input type="text" id="employeeId" name="employeeId" required>
+
+      <label for="month">Month</label>
+      <input type="month" id="month" name="month" required>
+
+      <label for="basicSalary">Basic Salary</label>
+      <input type="number" id="basicSalary" name="basicSalary" required>
+
+      <label for="allowance">Allowance</label>
+      <input type="number" id="allowance" name="allowance">
+
+      <label for="deductions">Deductions</label>
+      <input type="number" id="deductions" name="deductions">
+
+      <div class="modal-actions">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" id="closePayrollModal" class="cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- End of Payroll UI -->
+
+
+<!-- Advances UI-->
+
+<div id="advances" class="content-section">
+  <div class="employee-management-header">
+    <div>
+      <h2>Advances</h2>
+    </div>
+    <button class="add-employee-btn" id="addAdvanceButton">
+      <i class="fas fa-plus"></i> Add Advance
+    </button>
+  </div>
+
+  <div class="employee-filters">
+    <div class="filter-group">
+      <label for="search-advance">Search Employee</label>
+      <div class="input-with-icon">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-advance" placeholder="Name or ID">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="advance-date-filter">Date</label>
+      <div class="input-with-icon">
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" id="advance-date-filter">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="advance-status-filter">Status</label>
+      <select id="advance-status-filter">
+        <option value="all">All</option>
+        <option value="approved">Approved</option>
+        <option value="pending">Pending</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <button class="search-btn">
+      <i class="fas fa-search"></i> Search
+    </button>
+  </div>
+
+  <div class="employee-list-container">
+    <h3>Advance Records</h3>
+    <span>Showing 0 of 0 records</span>
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>EMPLOYEE ID</th>
+          <th>DATE</th>
+          <th>AMOUNT</th>
+          <th>REASON</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Advance rows will go here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Advance Modal -->
+<div id="advanceModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3>Add Advance</h3>
+    <form id="advanceForm">
+      <label for="advanceEmployeeName">Employee Name</label>
+      <input type="text" id="advanceEmployeeName" name="advanceEmployeeName" required>
+
+      <label for="advanceEmployeeId">Employee ID</label>
+      <input type="text" id="advanceEmployeeId" name="advanceEmployeeId" required>
+
+      <label for="advanceAmount">Advance Amount</label>
+      <input type="number" id="advanceAmount" name="advanceAmount" required>
+
+      <label for="advanceDate">Date</label>
+      <input type="date" id="advanceDate" name="advanceDate" required>
+
+      <label for="advanceReason">Reason</label>
+      <input type="text" id="advanceReason" name="advanceReason">
+
+      <div class="modal-actions">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" id="closeAdvanceModal" class="cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- End of Advances UI-->
+
+
+<!-- Leave UI-->
+
+<div id="leave" class="content-section">
+  <div class="leave-header">
+    <h2>Leave Management</h2>
+    <button class="request-leave-btn" id="openLeaveBtn"><i class="fas fa-plus"></i> Request Leave</button>
+  </div>
+
+  <div class="leave-summary-cards">
+    <div class="card summary total">
+      <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+      <div><h3>0</h3><p>Total Requests</p></div>
+    </div>
+    <div class="card summary pending">
+      <div class="icon"><i class="fas fa-clock"></i></div>
+      <div><h3>0</h3><p>Pending</p></div>
+    </div>
+    <div class="card summary approved">
+      <div class="icon"><i class="fas fa-check-circle"></i></div>
+      <div><h3>0</h3><p>Approved</p></div>
+    </div>
+    <div class="card summary rejected">
+      <div class="icon"><i class="fas fa-times-circle"></i></div>
+      <div><h3>0</h3><p>Rejected</p></div>
+    </div>
+  </div>
+
+  <div class="leave-filters">
+    <input type="text" placeholder="Search Employee..." />
+    <select>
+      <option>All Types</option>
+      <option>Vacation</option>
+      <option>Sick</option>
+      <option>Emergency</option>
+    </select>
+    <select>
+      <option>All Status</option>
+      <option>Pending</option>
+      <option>Approved</option>
+      <option>Rejected</option>
+    </select>
+    <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+  </div>
+
+  <div class="leave-table-container">
+    <h3>Leave Requests</h3>
+    <table class="leave-table">
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>LEAVE TYPE</th>
+          <th>START DATE</th>
+          <th>END DATE</th>
+          <th>DAYS</th>
+          <th>REASON</th>
+          <th>APPLIED</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="9" class="center">0 requests</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="LeaveModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+
+    <label for="leaveType">Leave Type</label>
+    <select id="leaveType">
+      <option value="sick">Sick Leave</option>
+      <option value="vacation">Vacation</option>
+    </select>
+
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate">
+
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate">
+
+
+    <div class="modal-actions">
+      <button class="cancel-btn" id="closeLeaveModal">Cancel</button>
+      <button class="save-btn">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- End of Leave UI-->
+
+
+<!-- Overtime UI-->
+
+<div id="overtime management" class="content-section">
+  <div class="employee-management-header">
+    <div>
+      <h2>Overtime Management</h2>
+    </div>
+    <button class="add-employee-btn" id="addOvertimeButton"><i class="fas fa-plus"></i> Add Overtime</button>
+  </div>
+
+  <div class="employee-filters">
+    <div class="filter-group">
+      <label for="search-overtime">Search Employee</label>
+      <div class="input-with-icon">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-overtime" placeholder="Name or ID">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="overtime-date-filter">Date</label>
+      <div class="input-with-icon">
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" id="overtime-date-filter">
+      </div>
+    </div>
+    
+
+    <div class="filter-group">
+      <label for="overtime-status-filter">Status</label>
+      <select id="overtime-status-filter">
+        <option value="all">All</option>
+        <option value="approved">Approved</option>
+        <option value="pending">Pending</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+  </div>
+
+  <div class="employee-list-container">
+    <h3>Overtime Records</h3>
+    <span>Showing 0 of 0 records</span>
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>EMPLOYEE ID</th>
+          <th>DATE</th>
+          <th>HOURS</th>
+          <th>REASON</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Overtime rows will go here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="overtime" class="content-section">
+  <div class="overtime-header">
+    <h2>Overtime Management</h2>
+    <button class="request-overtime-btn" id="openOvertimeBtn"><i class="fas fa-plus"></i> Request Overtime</button>
+  </div>
+
+
+  <div class="overtime-table-container">
+    <h3>Overtime Requests</h3>
+    <table class="overtime-table">
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>DATE</th>
+          <th>HOURS</th>
+          <th>REASON</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="6" class="center">0 requests</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Overtime Modal -->
+<div id="OvertimeModal" class="modal-overlay" style="display: none;">
+  <div class="modal-box">
+    <label for="overtimeDate">Date</label>
+    <input type="date" id="overtimeDate">
+
+    <label for="overtimeHours">Hours</label>
+    <input type="number" id="overtimeHours" min="1" max="24">
+
+    <label for="overtimeReason">Reason</label>
+    <input type="text" id="overtimeReason" placeholder="Enter reason">
+
+
+    <div class="modal-actions">
+      <button class="cancel-btn" id="closeOvertimeModal">Cancel</button>
+      <button class="save-btn">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- End of Overtime UI-->
+
+
+<!-- Users UI -->
+
+<div id="users" class="content-section">
+  <div class="employee-management-header">
+    <div>
+      <h2>User Management</h2>
+    </div>
+    <button class="add-employee-btn" id="addUserButton"><i class="fas fa-plus"></i> Add User</button>
+  </div>
+
+  <div class="employee-filters">
+    <div class="filter-group">
+      <label for="search-user">Search User</label>
+      <div class="input-with-icon">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-user" placeholder="Name or ID">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="role-filter">Role</label>
+      <select id="role-filter">
+        <option value="all">All Roles</option>
+        <option value="admin">Administrator</option>
+        <option value="instructor">Manager</option>
+        <option value="student">Payroll Clerk</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="status-filter">Status</label>
+      <select id="status-filter">
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+    </div>
+
+    <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+  </div>
+
+  <div class="employee-list-container">
+    <h3>User Records</h3>
+    <span>Showing 0 of 0 records</span>
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>NAME</th>
+          <th>USER ID</th>
+          <th>EMAIL</th>
+          <th>ROLE</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- User rows will go here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- User Modal -->
+<div id="UserModal" class="modal-overlay" style="display: none;">
+  <div class="modal-box">
+    <label for="userName">Full Name</label>
+    <input type="text" id="userName" placeholder="Enter full name">
+
+    <label for="userEmail">Email</label>
+    <input type="email" id="userEmail" placeholder="Enter email">
+
+    <label for="userid">ID</label>
+    <input type="id" id="userid" placeholder="Enter ID">
+
+    <label for="userRole">Role</label>
+    <select id="userRole">
+      <option value="admin">Admin</option>
+      <option value="instructor">Employee</option>
+      <option value="student">Manager</option>
+    </select>
+
+    <label for="userStatus">Status</label>
+    <select id="userStatus">
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+
+    <div class="modal-actions">
+      <button class="cancel-btn" id="closeUserModal">Cancel</button>
+      <button class="save-btn">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- End of Users UI -->
+
+<!-- Reports UI -->
+
+<div id="reports" class="content-section"> 
+  <div class="employee-management-header">
+    <div>
+      <h2>Reports</h2>
+    </div>
+    <button class="add-employee-btn" id="generateReportButton">
+      <i class="fas fa-file-alt"></i> Generate Report
+    </button>
+  </div>
+
+  <div class="employee-filters">
+    <div class="filter-group">
+      <label for="report-type-filter">Report Type</label>
+      <select id="report-type-filter">
+        <option value="all">All Reports</option>
+        <option value="attendance">Attendance</option>
+        <option value="overtime">Overtime</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="report-date-from">From</label>
+      <div class="input-with-icon">
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" id="report-date-from">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="report-date-to">To</label>
+      <div class="input-with-icon">
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" id="report-date-to">
+      </div>
+    </div>
+
+    <button class="search-btn"><i class="fas fa-search"></i> Filter</button>
+  </div>
+
+  <div class="employee-list-container">
+    <h3>Report Results</h3>
+    <span>Showing 0 of 0 records</span>
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>REPORT NAME</th>
+          <th>DATE GENERATED</th>
+          <th>TYPE</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody id="reportTableBody">
+        <!-- Report rows will be added here dynamically -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Report Modal -->
+<div id="ReportModal" class="modal-overlay" style="display: none;">
+  <div class="modal-box">
+    <h3>Generate New Report</h3>
+
+    <label for="modalReportType">Report Type</label>
+    <select id="modalReportType">
+      <option value="attendance">Attendance</option>
+      <option value="overtime">Overtime</option>
+    </select>
+
+    <label for="modalReportDateFrom">From</label>
+    <input type="date" id="modalReportDateFrom">
+
+    <label for="modalReportDateTo">To</label>
+    <input type="date" id="modalReportDateTo">
+
+    <div class="modal-actions">
+      <button class="cancel-btn" id="closeReportModal">Cancel</button>
+      <button class="save-btn" id="generateReportSubmit">Generate</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Report Modal with Download PDF -->
+<div id="viewReportModal" class="modal-overlay" style="display: none;">
+  <div class="modal-box">
+    <h3>Report Preview</h3>
+    <p id="reportDetails"></p>
+    <div class="modal-actions">
+      <button class="cancel-btn" id="closeViewReportModal">Close</button>
+      <button class="save-btn" id="downloadPdfReport">
+        <i class="fas fa-file-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- End of Reports UI -->
+
+
+<div id="logoutModal" class="modal">
+<div class="modal-content">
+<p>Are you sure you want to logout?</p>
+<div class="modal-buttons">
+<button id="confirmLogout">Yes</button>
+<button id="cancelLogout">No</button>
+</div>
+</div>
+</div>
+<div id="addEmployeeModal" class="modal">
+<div class="modal-content modal-lg">
+<div class="modal-header">
+<h3>Add New Employee</h3>
+<button class="close-modal-btn" id="closeAddEmployeeModal"><i class="fas fa-times"></i></button>
+</div>
+<form id="addEmployeeForm" class="add-employee-form">
+<div class="form-row">
+<div class="form-group full-width">
+<label for="employeeID">Employee ID</label>
+<input type="text" id="employeeID" value="EMP555400" readonly>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="firstName">First Name</label>
+<input type="text" id="firstName" placeholder="Enter first name">
+</div>
+<div class="form-group">
+<label for="lastName">Last Name</label>
+<input type="text" id="lastName" placeholder="Enter last name">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" id="email" placeholder="employee@company.com">
+</div>
+<div class="form-group">
+<label for="phone">Phone</label>
+<input type="text" id="phone" placeholder="+1 (555) 123-4567">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="department">Department</label>
+<select id="department">
+<option value="">Select Department</option>
+<option value="hr">Human Resources</option>
+<option value="it">IT</option>
+<option value="finance">Finance</option>
+<option value="sales">Sales</option>
+</select>
+</div>
+<div class="form-group">
+<label for="position">Position</label>
+<input type="text" id="position" placeholder="Job title">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="hireDate">Hire Date</label>
+<div class="input-with-icon">
+<input type="text" id="hireDate" placeholder="mm/dd/yyyy">
+<i class="far fa-calendar-alt"></i> </div>
+</div>
+<div class="form-group">
+<label for="baseSalary">Base Salary</label>
+<input type="number" id="baseSalary" placeholder="50000">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group full-width">
+<label for="address">Address</label>
+<textarea id="address" placeholder="Employee address"></textarea>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" id="cancelAddEmployee">Cancel</button>
+<button type="submit" class="btn btn-primary" id="saveEmployee">Add Employee</button>
+</div>
+</form>
+</div>
+</div>
+<script src="dashboard.js"></script>
 </body>
 </html>
