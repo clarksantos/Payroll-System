@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
   document.getElementById("confirmLogout").addEventListener("click", function () {
     sessionStorage.removeItem("loggedIn");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   });
  
   document.getElementById("cancelLogout").addEventListener("click", function () {
