@@ -26,3 +26,6 @@ password: admin123
 
 link in website: (https://payroll-system-lilac-eta.vercel.app/)
 
+Clark Louis T. Santos
+Miqueas F. Ramirez
+Lee Bron James R. Asuncion
